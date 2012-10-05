@@ -8,22 +8,43 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController () {
+
+    GCDAsyncUdpSocket *socket;
+    
+}
 
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    label.text = @"iYooDeePee";
+    
+    socket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+
+    [socket bindToPort:3000 error:nil];
+    [socket beginReceiving:nil];
+    [socket enableBroadcast:YES error:nil];
 }
 
-- (void)didReceiveMemoryWarning
+- (BOOL)onUdpSocket:(GCDAsyncUdpSocket *)sock
+     didReceiveData:(NSData *)data
+            withTag:(long)tag
+           fromHost:(NSString *)host
+               port:(UInt16)port
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	NSString *msg = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	if (msg)
+	{
+		NSLog(@"%@", msg);
+	}
+    
+	[socket sendData:data toHost:host port:port withTimeout:-1 tag:0];
+    
+	return YES;
 }
 
 @end

@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GCDAsyncUdpSocket.h"
+#import "GCDAsyncSocket.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController {
+    IBOutlet UILabel *label;
+}
 
 @end
