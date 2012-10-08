@@ -51,7 +51,7 @@ static	NSInteger	const		INCOMING_PORT	=	12000;
 
 -(void)startListenerUDP {
 	
-	udpSocket = [[AsyncUdpSocket alloc]initIPv4];
+	udpSocket = [[AsyncUdpSocket alloc] initIPv4];
 	[udpSocket setDelegate:self];
 	
 	if ([udpSocket bindToPort:INCOMING_PORT error:nil]){
