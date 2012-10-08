@@ -11,7 +11,10 @@
 #import "GCDAsyncSocket.h"
 
 @interface ViewController : UIViewController {
-    IBOutlet UILabel *label;
+    IBOutlet UILabel *ipAddresslabel;
+	IBOutlet UILabel *sectionNumberLabel;
+	IBOutlet UILabel *countNumberLabel;
+	IBOutlet UILabel *totalCountNumberLabel;
 }
 
 @end
