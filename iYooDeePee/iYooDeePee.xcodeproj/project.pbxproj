@@ -16,8 +16,8 @@
 		666574B8161EFD3B00C7E0DF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 666574B7161EFD3B00C7E0DF /* Default.png */; };
 		666574BA161EFD3B00C7E0DF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 666574B9161EFD3B00C7E0DF /* Default@2x.png */; };
 		666574BC161EFD3B00C7E0DF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 666574BB161EFD3B00C7E0DF /* Default-568h@2x.png */; };
-		666574BF161EFD3B00C7E0DF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666574BE161EFD3B00C7E0DF /* ViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		666574C2161EFD3B00C7E0DF /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 666574C0161EFD3B00C7E0DF /* ViewController.xib */; };
+		666574BF161EFD3B00C7E0DF /* PerformanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666574BE161EFD3B00C7E0DF /* PerformanceViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		666574C2161EFD3B00C7E0DF /* PerformanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 666574C0161EFD3B00C7E0DF /* PerformanceViewController.xib */; };
 		666578A5161F0DCA00C7E0DF /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6665772C161F0DC900C7E0DF /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		666578A6161F0DCA00C7E0DF /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6665772E161F0DC900C7E0DF /* GCDAsyncUdpSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		666578F9161F0DCA00C7E0DF /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6665780A161F0DC900C7E0DF /* AsyncSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -50,9 +50,9 @@
 		666574B7161EFD3B00C7E0DF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		666574B9161EFD3B00C7E0DF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		666574BB161EFD3B00C7E0DF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		666574BD161EFD3B00C7E0DF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		666574BE161EFD3B00C7E0DF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		666574C1161EFD3B00C7E0DF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		666574BD161EFD3B00C7E0DF /* PerformanceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PerformanceViewController.h; sourceTree = "<group>"; };
+		666574BE161EFD3B00C7E0DF /* PerformanceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PerformanceViewController.m; sourceTree = "<group>"; };
+		666574C1161EFD3B00C7E0DF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PerformanceViewController.xib; sourceTree = "<group>"; };
 		6665772B161F0DC900C7E0DF /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		6665772C161F0DC900C7E0DF /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		6665772D161F0DC900C7E0DF /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
@@ -101,6 +101,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		662B1C261623183C00CA5303 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				662B1C281623186400CA5303 /* NIBs */,
+				662B1C271623185700CA5303 /* Images */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		662B1C271623185700CA5303 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				666574B7161EFD3B00C7E0DF /* Default.png */,
+				666574B9161EFD3B00C7E0DF /* Default@2x.png */,
+				666574BB161EFD3B00C7E0DF /* Default-568h@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		662B1C281623186400CA5303 /* NIBs */ = {
+			isa = PBXGroup;
+			children = (
+				666574C0161EFD3B00C7E0DF /* PerformanceViewController.xib */,
+			);
+			name = NIBs;
+			sourceTree = "<group>";
+		};
 		66657496161EFD3B00C7E0DF = {
 			isa = PBXGroup;
 			children = (
@@ -136,9 +163,9 @@
 			children = (
 				666574B4161EFD3B00C7E0DF /* AppDelegate.h */,
 				666574B5161EFD3B00C7E0DF /* AppDelegate.m */,
-				666574BD161EFD3B00C7E0DF /* ViewController.h */,
-				666574BE161EFD3B00C7E0DF /* ViewController.m */,
-				666574C0161EFD3B00C7E0DF /* ViewController.xib */,
+				666574BD161EFD3B00C7E0DF /* PerformanceViewController.h */,
+				666574BE161EFD3B00C7E0DF /* PerformanceViewController.m */,
+				662B1C261623183C00CA5303 /* Resources */,
 				666574AC161EFD3B00C7E0DF /* Supporting Files */,
 			);
 			path = iYooDeePee;
@@ -151,9 +178,6 @@
 				666574AE161EFD3B00C7E0DF /* InfoPlist.strings */,
 				666574B1161EFD3B00C7E0DF /* main.m */,
 				666574B3161EFD3B00C7E0DF /* iYooDeePee-Prefix.pch */,
-				666574B7161EFD3B00C7E0DF /* Default.png */,
-				666574B9161EFD3B00C7E0DF /* Default@2x.png */,
-				666574BB161EFD3B00C7E0DF /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -305,7 +329,7 @@
 				666574B8161EFD3B00C7E0DF /* Default.png in Resources */,
 				666574BA161EFD3B00C7E0DF /* Default@2x.png in Resources */,
 				666574BC161EFD3B00C7E0DF /* Default-568h@2x.png in Resources */,
-				666574C2161EFD3B00C7E0DF /* ViewController.xib in Resources */,
+				666574C2161EFD3B00C7E0DF /* PerformanceViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +345,7 @@
 				7CDBD03F161F29C600678482 /* WSOSCPacket.m in Sources */,
 				666574B2161EFD3B00C7E0DF /* main.m in Sources */,
 				666574B6161EFD3B00C7E0DF /* AppDelegate.m in Sources */,
-				666574BF161EFD3B00C7E0DF /* ViewController.m in Sources */,
+				666574BF161EFD3B00C7E0DF /* PerformanceViewController.m in Sources */,
 				666578A5161F0DCA00C7E0DF /* GCDAsyncSocket.m in Sources */,
 				666578A6161F0DCA00C7E0DF /* GCDAsyncUdpSocket.m in Sources */,
 				666578F9161F0DCA00C7E0DF /* AsyncSocket.m in Sources */,
@@ -347,12 +371,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		666574C0161EFD3B00C7E0DF /* ViewController.xib */ = {
+		666574C0161EFD3B00C7E0DF /* PerformanceViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				666574C1161EFD3B00C7E0DF /* en */,
 			);
-			name = ViewController.xib;
+			name = PerformanceViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
