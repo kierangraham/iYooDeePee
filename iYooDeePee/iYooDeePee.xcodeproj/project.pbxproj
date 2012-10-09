@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		662B1C301623308500CA5303 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 662B1C2E1623308400CA5303 /* DashboardViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		662B1C311623308500CA5303 /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 662B1C2F1623308500CA5303 /* DashboardViewController.xib */; };
 		666574A6161EFD3B00C7E0DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 666574A5161EFD3B00C7E0DF /* UIKit.framework */; };
 		666574A8161EFD3B00C7E0DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 666574A7161EFD3B00C7E0DF /* Foundation.framework */; };
 		666574AA161EFD3B00C7E0DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 666574A9161EFD3B00C7E0DF /* CoreGraphics.framework */; };
@@ -31,12 +33,20 @@
 		6665791B161F0DCA00C7E0DF /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6665785C161F0DC900C7E0DF /* DispatchQueueLogFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66657951161F0E8700C7E0DF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66657950161F0E8700C7E0DF /* CFNetwork.framework */; };
 		66657953161F0E8F00C7E0DF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66657952161F0E8F00C7E0DF /* Security.framework */; };
-		7CDBD03D161F29C600678482 /* WSOSCBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDBD034161F25F400678482 /* WSOSCBundle.m */; };
-		7CDBD03E161F29C600678482 /* WSOSCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDBD036161F25F400678482 /* WSOSCMessage.m */; };
-		7CDBD03F161F29C600678482 /* WSOSCPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDBD038161F25F400678482 /* WSOSCPacket.m */; };
+		66F8E7ED162458B20016FFAE /* NS+OSCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F8E7E3162458B20016FFAE /* NS+OSCAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		66F8E7EE162458B20016FFAE /* OSCConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F8E7E5162458B20016FFAE /* OSCConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		66F8E7EF162458B20016FFAE /* OSCDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F8E7E8162458B20016FFAE /* OSCDispatcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		66F8E7F0162458B20016FFAE /* OSCPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F8E7EA162458B20016FFAE /* OSCPacket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		66F8E7F1162458B20016FFAE /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F8E7EC162458B20016FFAE /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7CDBD03D161F29C600678482 /* WSOSCBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDBD034161F25F400678482 /* WSOSCBundle.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7CDBD03E161F29C600678482 /* WSOSCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDBD036161F25F400678482 /* WSOSCMessage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7CDBD03F161F29C600678482 /* WSOSCPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDBD038161F25F400678482 /* WSOSCPacket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		662B1C2D1623308400CA5303 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
+		662B1C2E1623308400CA5303 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
+		662B1C2F1623308500CA5303 /* DashboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardViewController.xib; sourceTree = "<group>"; };
 		666574A1161EFD3B00C7E0DF /* Fanfare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fanfare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		666574A5161EFD3B00C7E0DF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		666574A7161EFD3B00C7E0DF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -77,6 +87,18 @@
 		6665785C161F0DC900C7E0DF /* DispatchQueueLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueLogFormatter.m; sourceTree = "<group>"; };
 		66657950161F0E8700C7E0DF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		66657952161F0E8F00C7E0DF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		66F8E7E1162458B20016FFAE /* CocoaOSC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaOSC.h; sourceTree = "<group>"; };
+		66F8E7E2162458B20016FFAE /* NS+OSCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NS+OSCAdditions.h"; sourceTree = "<group>"; };
+		66F8E7E3162458B20016FFAE /* NS+OSCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NS+OSCAdditions.m"; sourceTree = "<group>"; };
+		66F8E7E4162458B20016FFAE /* OSCConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCConnection.h; sourceTree = "<group>"; };
+		66F8E7E5162458B20016FFAE /* OSCConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCConnection.m; sourceTree = "<group>"; };
+		66F8E7E6162458B20016FFAE /* OSCConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCConnectionDelegate.h; sourceTree = "<group>"; };
+		66F8E7E7162458B20016FFAE /* OSCDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCDispatcher.h; sourceTree = "<group>"; };
+		66F8E7E8162458B20016FFAE /* OSCDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCDispatcher.m; sourceTree = "<group>"; };
+		66F8E7E9162458B20016FFAE /* OSCPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCPacket.h; sourceTree = "<group>"; };
+		66F8E7EA162458B20016FFAE /* OSCPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCPacket.m; sourceTree = "<group>"; };
+		66F8E7EB162458B20016FFAE /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		66F8E7EC162458B20016FFAE /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		7CDBD033161F25F400678482 /* WSOSCBundle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WSOSCBundle.h; sourceTree = "<group>"; };
 		7CDBD034161F25F400678482 /* WSOSCBundle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WSOSCBundle.m; sourceTree = "<group>"; };
 		7CDBD035161F25F400678482 /* WSOSCMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WSOSCMessage.h; sourceTree = "<group>"; };
@@ -124,8 +146,20 @@
 			isa = PBXGroup;
 			children = (
 				666574C0161EFD3B00C7E0DF /* PerformanceViewController.xib */,
+				662B1C2F1623308500CA5303 /* DashboardViewController.xib */,
 			);
 			name = NIBs;
+			sourceTree = "<group>";
+		};
+		662B1C321623308D00CA5303 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				666574BD161EFD3B00C7E0DF /* PerformanceViewController.h */,
+				666574BE161EFD3B00C7E0DF /* PerformanceViewController.m */,
+				662B1C2D1623308400CA5303 /* DashboardViewController.h */,
+				662B1C2E1623308400CA5303 /* DashboardViewController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		66657496161EFD3B00C7E0DF = {
@@ -161,10 +195,9 @@
 		666574AB161EFD3B00C7E0DF /* iYooDeePee */ = {
 			isa = PBXGroup;
 			children = (
+				662B1C321623308D00CA5303 /* Controllers */,
 				666574B4161EFD3B00C7E0DF /* AppDelegate.h */,
 				666574B5161EFD3B00C7E0DF /* AppDelegate.m */,
-				666574BD161EFD3B00C7E0DF /* PerformanceViewController.h */,
-				666574BE161EFD3B00C7E0DF /* PerformanceViewController.m */,
 				662B1C261623183C00CA5303 /* Resources */,
 				666574AC161EFD3B00C7E0DF /* Supporting Files */,
 			);
@@ -185,6 +218,7 @@
 		666574CB161EFE9B00C7E0DF /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				66F8E7E0162458790016FFAE /* CocoaOSC */,
 				66657726161F0DC900C7E0DF /* CocoaAsyncSocket */,
 				7CDBD031161F25EF00678482 /* WSOSC */,
 			);
@@ -260,6 +294,25 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		66F8E7E0162458790016FFAE /* CocoaOSC */ = {
+			isa = PBXGroup;
+			children = (
+				66F8E7E1162458B20016FFAE /* CocoaOSC.h */,
+				66F8E7E2162458B20016FFAE /* NS+OSCAdditions.h */,
+				66F8E7E3162458B20016FFAE /* NS+OSCAdditions.m */,
+				66F8E7E4162458B20016FFAE /* OSCConnection.h */,
+				66F8E7E5162458B20016FFAE /* OSCConnection.m */,
+				66F8E7E6162458B20016FFAE /* OSCConnectionDelegate.h */,
+				66F8E7E7162458B20016FFAE /* OSCDispatcher.h */,
+				66F8E7E8162458B20016FFAE /* OSCDispatcher.m */,
+				66F8E7E9162458B20016FFAE /* OSCPacket.h */,
+				66F8E7EA162458B20016FFAE /* OSCPacket.m */,
+				66F8E7EB162458B20016FFAE /* RegexKitLite.h */,
+				66F8E7EC162458B20016FFAE /* RegexKitLite.m */,
+			);
+			name = CocoaOSC;
+			sourceTree = "<group>";
+		};
 		7CDBD031161F25EF00678482 /* WSOSC */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +383,7 @@
 				666574BA161EFD3B00C7E0DF /* Default@2x.png in Resources */,
 				666574BC161EFD3B00C7E0DF /* Default-568h@2x.png in Resources */,
 				666574C2161EFD3B00C7E0DF /* PerformanceViewController.xib in Resources */,
+				662B1C311623308500CA5303 /* DashboardViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +411,12 @@
 				66657919161F0DCA00C7E0DF /* DDTTYLogger.m in Sources */,
 				6665791A161F0DCA00C7E0DF /* ContextFilterLogFormatter.m in Sources */,
 				6665791B161F0DCA00C7E0DF /* DispatchQueueLogFormatter.m in Sources */,
+				662B1C301623308500CA5303 /* DashboardViewController.m in Sources */,
+				66F8E7ED162458B20016FFAE /* NS+OSCAdditions.m in Sources */,
+				66F8E7EE162458B20016FFAE /* OSCConnection.m in Sources */,
+				66F8E7EF162458B20016FFAE /* OSCDispatcher.m in Sources */,
+				66F8E7F0162458B20016FFAE /* OSCPacket.m in Sources */,
+				66F8E7F1162458B20016FFAE /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +499,7 @@
 				GCC_PREFIX_HEADER = "iYooDeePee/iYooDeePee-Prefix.pch";
 				INFOPLIST_FILE = "iYooDeePee/iYooDeePee-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = Fanfare;
 				WRAPPER_EXTENSION = app;
 			};
@@ -452,6 +513,7 @@
 				GCC_PREFIX_HEADER = "iYooDeePee/iYooDeePee-Prefix.pch";
 				INFOPLIST_FILE = "iYooDeePee/iYooDeePee-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = Fanfare;
 				WRAPPER_EXTENSION = app;
 			};
@@ -494,6 +556,7 @@
 				GCC_PREFIX_HEADER = "iYooDeePee/iYooDeePee-Prefix.pch";
 				INFOPLIST_FILE = "iYooDeePee/iYooDeePee-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = Fanfare;
 				PROVISIONING_PROFILE = "73B8DABF-9DE7-4D06-9DB8-CC31BACE0B08";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "73B8DABF-9DE7-4D06-9DB8-CC31BACE0B08";

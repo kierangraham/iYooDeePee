@@ -3883,24 +3883,26 @@ enum GCDAsyncUdpSocketConfig
 	{
 		// Connected socket
 		
-		const void *buffer = [currentSend->buffer bytes];
-		size_t length = (size_t)[currentSend->buffer length];
-		
-		if (currentSend->addressFamily == AF_INET)
-		{
-			result = send(socket4FD, buffer, length, 0);
-			LogVerbose(@"send(socket4FD) = %d", result);
-		}
-		else
-		{
-			result = send(socket6FD, buffer, length, 0);
-			LogVerbose(@"send(socket6FD) = %d", result);
-		}
+        id e_buffer = currentSend->buffer;
+        if ([e_buffer respondsToSelector:@selector(bytes)]) {
+            const void *buffer = [currentSend->buffer bytes];
+            size_t length = (size_t)[currentSend->buffer length];
+            
+            if (currentSend->addressFamily == AF_INET)
+            {
+                result = send(socket4FD, buffer, length, 0);
+                LogVerbose(@"send(socket4FD) = %d", result);
+            }
+            else
+            {
+                result = send(socket6FD, buffer, length, 0);
+                LogVerbose(@"send(socket6FD) = %d", result);
+            }
+        }
 	}
 	else
 	{
 		// Non-Connected socket
-		
 		const void *buffer = [currentSend->buffer bytes];
 		size_t length = (size_t)[currentSend->buffer length];
 		

@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "GCDAsyncUdpSocket.h"
-#import "GCDAsyncSocket.h"
 #import "WSOSCPacket.h"
+
+#import "AsyncUdpSocket.h"
+#import "CocoaOSC.h"
+
 #include <ifaddrs.h>
 #include <arpa/inet.h>
 

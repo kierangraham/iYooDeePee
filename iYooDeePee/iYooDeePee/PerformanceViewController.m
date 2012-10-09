@@ -8,8 +8,6 @@
 
 #import "PerformanceViewController.h"
 
-static	NSInteger	const		INCOMING_PORT	=	12000;
-
 @interface NSString (udp)
     - (NSString *)stringValue;
 @end
@@ -18,33 +16,49 @@ static	NSInteger	const		INCOMING_PORT	=	12000;
     - (NSString *)stringValue {return self;}
 @end
 
-@interface PerformanceViewController () {
-    GCDAsyncUdpSocket *socket;
+@interface PerformanceViewController () <GCDAsyncUdpSocketDelegate> {
+    GCDAsyncUdpSocket *sendSocket;
+    GCDAsyncUdpSocket *receiveSocket;
 }
 
 @end
 
-@implementation PerformanceViewController
+@implementation PerformanceViewController 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [ipAddresslabel setText:[self getIPAddress]];
 	
-    socket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    receiveSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    sendSocket    = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     
-    [socket bindToPort:12000 error:nil];
-    [socket beginReceiving:nil];
-    [socket enableBroadcast:YES error:nil];
+    [receiveSocket bindToPort:12000 error:nil];
+    [receiveSocket beginReceiving:nil];
+    [receiveSocket enableBroadcast:YES error:nil];
 	
+    [sendSocket connectToHost:@"10.0.0.60" onPort:12002 error:nil];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(sendDeviceIPAddress) userInfo:nil repeats:YES];
+    
+    [self sendDeviceIPAddress];
 }
 
-#pragma mark -
-#pragma mark GCDAsyncUdpSocketDelegate
+#pragma mark - UDP Socket
 
-- (void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)filterContext {
-    NSLog(@"udpSocket:didReceiveData:fromAddress:withFilterContext");
-    
+- (void)udpSocket:(GCDAsyncUdpSocket *)sock didSendDataWithTag:(long)tag {
+    NSLog(@"didSendData");
+}
+
+- (void)udpSocket:(GCDAsyncUdpSocket *)sock didConnectToAddress:(NSData *)address {
+    NSLog(@"didConnectToAddress");
+}
+
+- (void)udpSocket:(GCDAsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error {
+    NSLog(@"didNotSendDataWithTag");
+}
+
+- (void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)filterContext {    
     NSString *message = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	
 	WSOSCPacket *oscPacket   = [[WSOSCPacket alloc] initWithDataFrom:message];
@@ -65,45 +79,60 @@ static	NSInteger	const		INCOMING_PORT	=	12000;
 	else if ([command isEqualToString:@"/total"]) {
 		[totalCountNumberLabel setText:[@([args[0] intValue]) stringValue]];
 	}
-	
-	NSLog(@"******* Address string : %@\n Args: %@***********", [oscMessage addressString], [oscMessage arguments]);
+//	NSLog(@"******* Address string : %@\n Args: %@***********", [oscMessage addressString], [oscMessage arguments]);
+    
+//    [self sendDeviceIPAddress];
 }
 
-#pragma mark - Get IP Address
+- (void) sendDeviceIPAddress {
+    NSLog(@"sendDeviceIPAddress:");
+    
+    NSString *message = [self getIPAddress];
+    NSData   *data    = [message dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [message retain];
+    [data retain];
 
-- (NSString *)getIPAddress
-{
-	NSString *address = @"error";
-	struct ifaddrs *interfaces = NULL;
-	struct ifaddrs *temp_addr = NULL;
-	int success = 0;
+    [sendSocket sendData:data withTimeout:-1 tag:1];
+}
+
+-(NSString *) getIPAddress {
+	// On iPhone, WiFi is always "en0"
+    NSString *result = nil;
 	
-	// retrieve the current interfaces - returns 0 on success
-	success = getifaddrs(&interfaces);
-	if (success == 0)
+	struct ifaddrs *addrs;
+	const struct ifaddrs *cursor;
+	
+	if ((getifaddrs(&addrs) == 0))
 	{
-		// Loop through linked list of interfaces
-		temp_addr = interfaces;
-		while(temp_addr != NULL)
+		cursor = addrs;
+		while (cursor != NULL)
 		{
-			if(temp_addr->ifa_addr->sa_family == AF_INET)
+			NSLog(@"cursor->ifa_name = %s", cursor->ifa_name);
+			
+			if (strcmp(cursor->ifa_name, "en0") == 0)
 			{
-				// Check if interface is en0 which is the wifi connection on the iPhone
-				if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"])
+				if (cursor->ifa_addr->sa_family == AF_INET)
 				{
-					// Get NSString from C String
-					address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
+					struct sockaddr_in *addr = (struct sockaddr_in *)cursor->ifa_addr;
+					NSLog(@"cursor->ifa_addr = %s", inet_ntoa(addr->sin_addr));
+					
+                    result = [[NSString alloc] initWithFormat:@"%s",inet_ntoa(addr->sin_addr)];
+                    
+					cursor = NULL;
+				}
+				else
+				{
+					cursor = cursor->ifa_next;
 				}
 			}
-			
-			temp_addr = temp_addr->ifa_next;
+			else
+			{
+				cursor = cursor->ifa_next;
+			}
 		}
+		freeifaddrs(addrs);
 	}
-	
-	// Free memory
-	freeifaddrs(interfaces);
-	
-	return address;
+	return result;
 }
-
 @end
