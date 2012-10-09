@@ -7,7 +7,7 @@
  *
  */
 
-#import "OSCConnectionDelegate.h"
-#import "OSCConnection.h"
-#import "OSCDispatcher.h"
-#import "OSCPacket.h"
+#import <CocoaOSC/OSCConnectionDelegate.h>
+#import <CocoaOSC/OSCConnection.h>
+#import <CocoaOSC/OSCDispatcher.h>
+#import <CocoaOSC/OSCPacket.h>

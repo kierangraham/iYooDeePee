@@ -16,9 +16,11 @@
     - (NSString *)stringValue {return self;}
 @end
 
-@interface PerformanceViewController () <GCDAsyncUdpSocketDelegate> {
+@interface PerformanceViewController () <GCDAsyncUdpSocketDelegate, OSCConnectionDelegate> {
     GCDAsyncUdpSocket *sendSocket;
     GCDAsyncUdpSocket *receiveSocket;
+
+    OSCConnection     *oscConnection;
 }
 
 @end
@@ -39,6 +41,13 @@
 	
     [sendSocket connectToHost:@"10.0.0.60" onPort:12002 error:nil];
     
+    // Setup OSC Connection
+    oscConnection = [[OSCConnection alloc] init];
+    oscConnection.delegate = self;
+    oscConnection.continuouslyReceivePackets = YES;
+    [oscConnection bindToAddress:nil port:0 error:nil];
+    [oscConnection receivePacket];
+
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(sendDeviceIPAddress) userInfo:nil repeats:YES];
     
     [self sendDeviceIPAddress];
@@ -79,21 +88,20 @@
 	else if ([command isEqualToString:@"/total"]) {
 		[totalCountNumberLabel setText:[@([args[0] intValue]) stringValue]];
 	}
-//	NSLog(@"******* Address string : %@\n Args: %@***********", [oscMessage addressString], [oscMessage arguments]);
-    
-//    [self sendDeviceIPAddress];
 }
 
 - (void) sendDeviceIPAddress {
     NSLog(@"sendDeviceIPAddress:");
     
-    NSString *message = [self getIPAddress];
-    NSData   *data    = [message dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *remoteAddress = @"10.0.0.60";
     
-    [message retain];
-    [data retain];
+    OSCMutableMessage *message = [[OSCMutableMessage alloc] init];
 
-    [sendSocket sendData:data withTimeout:-1 tag:1];
+    message.address = @"/client_ip";
+    [message addString:[self getIPAddress]];
+
+
+    [oscConnection sendPacket:message toHost:remoteAddress port:12002];
 }
 
 -(NSString *) getIPAddress {
@@ -108,14 +116,11 @@
 		cursor = addrs;
 		while (cursor != NULL)
 		{
-			NSLog(@"cursor->ifa_name = %s", cursor->ifa_name);
-			
 			if (strcmp(cursor->ifa_name, "en0") == 0)
 			{
 				if (cursor->ifa_addr->sa_family == AF_INET)
 				{
 					struct sockaddr_in *addr = (struct sockaddr_in *)cursor->ifa_addr;
-					NSLog(@"cursor->ifa_addr = %s", inet_ntoa(addr->sin_addr));
 					
                     result = [[NSString alloc] initWithFormat:@"%s",inet_ntoa(addr->sin_addr)];
                     

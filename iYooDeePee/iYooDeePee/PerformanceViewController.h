@@ -12,7 +12,11 @@
 #import "WSOSCPacket.h"
 
 #import "AsyncUdpSocket.h"
-#import "CocoaOSC.h"
+
+#import "OSCConnectionDelegate.h"
+#import "OSCConnection.h"
+#import "OSCDispatcher.h"
+#import "OSCPacket.h"
 
 #include <ifaddrs.h>
 #include <arpa/inet.h>
