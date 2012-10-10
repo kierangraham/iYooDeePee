@@ -6,23 +6,17 @@
 //  Copyright (c) 2012 Ecliptic Labs. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "PerformanceViewController.h"
 
-@interface NSString (udp)
-    - (NSString *)stringValue;
-@end
-
-@implementation NSString (udp)
-    - (NSString *)stringValue {return self;}
-@end
-
 @interface PerformanceViewController () <GCDAsyncUdpSocketDelegate, OSCConnectionDelegate> {
-    GCDAsyncUdpSocket *sendSocket;
     GCDAsyncUdpSocket *receiveSocket;
-
     OSCConnection     *oscConnection;
+    
+    NSInteger duration;
+    NSInteger section;
+    NSInteger count;
 }
-
 @end
 
 @implementation PerformanceViewController 
@@ -30,16 +24,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [ipAddresslabel setText:[self getIPAddress]];
+    duration = 0;
+    section  = 0;
+    count    = 0;
+    
+    ipAddressLabel.text = [[AppDelegate delegate] ipAddress];
+    instrumentIDLabel.text = [[AppDelegate delegate] instrumentID];
 	
     receiveSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
-    sendSocket    = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     
     [receiveSocket bindToPort:12000 error:nil];
     [receiveSocket beginReceiving:nil];
     [receiveSocket enableBroadcast:YES error:nil];
-	
-    [sendSocket connectToHost:@"10.0.0.60" onPort:12002 error:nil];
     
     // Setup OSC Connection
     oscConnection = [[OSCConnection alloc] init];
@@ -47,25 +43,18 @@
     oscConnection.continuouslyReceivePackets = YES;
     [oscConnection bindToAddress:nil port:0 error:nil];
     [oscConnection receivePacket];
-
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(sendDeviceIPAddress) userInfo:nil repeats:YES];
     
-    [self sendDeviceIPAddress];
+    [self sendDeviceInfo];
 }
 
-#pragma mark - UDP Socket
+#pragma mark - Progress Indicator
 
-- (void)udpSocket:(GCDAsyncUdpSocket *)sock didSendDataWithTag:(long)tag {
-    NSLog(@"didSendData");
+- (void) updateProgress {
+    float percent = [@(count) floatValue] / [@(duration) floatValue];
+    [progressIndicator setProgress:percent];
 }
 
-- (void)udpSocket:(GCDAsyncUdpSocket *)sock didConnectToAddress:(NSData *)address {
-    NSLog(@"didConnectToAddress");
-}
-
-- (void)udpSocket:(GCDAsyncUdpSocket *)sock didNotSendDataWithTag:(long)tag dueToError:(NSError *)error {
-    NSLog(@"didNotSendDataWithTag");
-}
+#pragma mark - UDP Receive Socket
 
 - (void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)filterContext {    
     NSString *message = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -80,64 +69,56 @@
 	NSString *command = [oscMessage addressString];
 	
 	if ([command isEqualToString:@"/section"]) {
-		[sectionNumberLabel setText:[@([args[0] intValue]) stringValue]];
+        section = [args[0] intValue];
+        sectionNumberLabel.text = [NSString stringWithFormat:@"%i", section];
 	}
 	else if ([command isEqualToString:@"/count"]) {
-		[countNumberLabel setText:[@([args[0] intValue]) stringValue]];
+        count = [args[0] intValue];
+		countNumberLabel.text = [NSString stringWithFormat:@"%i", count];
 	}
 	else if ([command isEqualToString:@"/total"]) {
-		[totalCountNumberLabel setText:[@([args[0] intValue]) stringValue]];
+        duration = [args[0] intValue];
+		totalCountNumberLabel.text = [NSString stringWithFormat:@"%i", duration];
 	}
+    
+    [self updateProgress];
 }
 
-- (void) sendDeviceIPAddress {
-    NSLog(@"sendDeviceIPAddress:");
+#pragma mark - OSC Socket
+
+- (void) sendDeviceInfo {    
+    NSString *remoteAddress = @"10.0.0.100";
+    NSString *deviceAddress = [[AppDelegate delegate] ipAddress];
+    NSString *instrumentID  = [[AppDelegate delegate] instrumentID];
     
-    NSString *remoteAddress = @"10.0.0.60";
+    OSCMutableMessage *willConnectPacket = [[OSCMutableMessage alloc] init];
+    willConnectPacket.address = @"/client_will_connect";
+//    [willConnectPacket addString:@"vvvv"];
     
-    OSCMutableMessage *message = [[OSCMutableMessage alloc] init];
-
-    message.address = @"/client_ip";
-    [message addString:[self getIPAddress]];
-
-
-    [oscConnection sendPacket:message toHost:remoteAddress port:12002];
+    OSCMutableMessage *didConnectPacket = [[OSCMutableMessage alloc] init];
+    didConnectPacket.address = @"/client_did_connect";
+//    [didConnectPacket addString:@"^^^^"];
+    
+    OSCMutableBundle  *bundle              = [[OSCMutableBundle alloc] init];
+    
+    OSCMutableMessage *deviceAddressPacket = [[OSCMutableMessage alloc] init];
+    deviceAddressPacket.address = @"/device_ip";
+    [deviceAddressPacket addString:deviceAddress];
+    
+    OSCMutableMessage *instrumentIdPacket  = [[OSCMutableMessage alloc] init];
+    instrumentIdPacket.address = @"/instrument_id";
+    [instrumentIdPacket addString:instrumentID];
+    
+    [bundle addChildPacket:willConnectPacket];
+    [bundle addChildPacket:deviceAddressPacket];
+    [bundle addChildPacket:instrumentIdPacket];
+    [bundle addChildPacket:didConnectPacket];
+    
+    [oscConnection sendPacket:bundle toHost:remoteAddress port:12002];
 }
 
--(NSString *) getIPAddress {
-	// On iPhone, WiFi is always "en0"
-    NSString *result = nil;
-	
-	struct ifaddrs *addrs;
-	const struct ifaddrs *cursor;
-	
-	if ((getifaddrs(&addrs) == 0))
-	{
-		cursor = addrs;
-		while (cursor != NULL)
-		{
-			if (strcmp(cursor->ifa_name, "en0") == 0)
-			{
-				if (cursor->ifa_addr->sa_family == AF_INET)
-				{
-					struct sockaddr_in *addr = (struct sockaddr_in *)cursor->ifa_addr;
-					
-                    result = [[NSString alloc] initWithFormat:@"%s",inet_ntoa(addr->sin_addr)];
-                    
-					cursor = NULL;
-				}
-				else
-				{
-					cursor = cursor->ifa_next;
-				}
-			}
-			else
-			{
-				cursor = cursor->ifa_next;
-			}
-		}
-		freeifaddrs(addrs);
-	}
-	return result;
+- (void)viewDidUnload {
+    progressIndicator = nil;
+    [super viewDidUnload];
 }
 @end

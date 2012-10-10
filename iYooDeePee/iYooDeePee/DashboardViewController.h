@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DashboardViewController : UIViewController
+@interface DashboardViewController : UIViewController {
+    IBOutlet UIButton    *connectButton;
+    IBOutlet UITextField *instrumentField;
+}
+
+- (IBAction) connectAction:(UIButton *) button;
+
+- (void) oscSendClientConnectionInfo;
 
 @end

@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Ecliptic Labs. All rights reserved.
 //
 
+#import "AppDelegate.h"
+#import "PerformanceViewController.h"
 #import "DashboardViewController.h"
 
 @interface DashboardViewController ()
@@ -13,6 +15,23 @@
 @end
 
 @implementation DashboardViewController
+
+#pragma mark - Actions
+
+- (IBAction) connectAction:(UIButton*) button {
+    [AppDelegate delegate].instrumentID = instrumentField.text;
+        
+    PerformanceViewController *controller = [[PerformanceViewController alloc] initWithNibName:@"PerformanceViewController" bundle:nil];
+    [AppDelegate window].rootViewController = controller;
+}
+
+#pragma mark - OSC
+
+- (void) oscSendClientConnectionInfo {
+    
+}
+
+#pragma mark - Lifecycle
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

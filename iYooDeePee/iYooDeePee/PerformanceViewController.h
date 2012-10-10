@@ -22,10 +22,14 @@
 #include <arpa/inet.h>
 
 @interface PerformanceViewController : UIViewController {
-    IBOutlet UILabel *ipAddresslabel;
+    IBOutlet UILabel *ipAddressLabel;
+    IBOutlet UILabel *instrumentIDLabel;
 	IBOutlet UILabel *sectionNumberLabel;
 	IBOutlet UILabel *countNumberLabel;
 	IBOutlet UILabel *totalCountNumberLabel;
+    IBOutlet UIProgressView *progressIndicator;
 }
+
+- (void) sendDeviceInfo;
 
 @end
