@@ -11,6 +11,8 @@
 #import "DashboardViewController.h"
 #import "PerformanceViewController.h"
 
+#import "TestFlight.h"
+
 @implementation AppDelegate
 
 @synthesize window, viewController, instrumentID;
@@ -27,15 +29,68 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+	
     
     self.viewController = [[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
 
     [UIApplication sharedApplication].idleTimerDisabled = YES;
+	
+	[self launchTestFlightWithTeamToken:@"e58d4ffff85f3c08b9e69347f0d92a49_MTM5ODcwMjAxMi0xMC0wNyAxNzo1ODoxMS4yMDQzMTc"];
 
     return YES;
 }
+
+static void uncaughtExceptionHandler(NSException *exception) {
+    NSLog(@"CRASH: %@", exception);
+    NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
+    // Internal error reporting
+}
+
+static void HandleExceptions(NSException *exception) {
+    NSLog(@"This is where we save the application data during a exception");
+    // Save application data on crash
+	
+}
+/*
+ My Apps Custom signal catcher, we do special stuff here, and TestFlight takes care of the rest
+ **/
+static void SignalHandler(int sig) {
+    NSLog(@"This is where we save the application data during a signal");
+    // Save application data on crash
+}
+
+- (void)launchTestFlightWithTeamToken:(NSString *)teamToken {
+	
+	//#ifdef AD_HOC
+	//	if ([[UIDevice currentDevice] respondsToSelector:@selector(uniqueIdentifier)])
+	//		[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+	//#endif
+	
+	//	NSLog(@"Launching TestFlight with token:\n%@", teamToken);
+	
+	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+	
+    // create the signal action structure
+    struct sigaction newSignalAction;
+    // initialize the signal action structure
+    memset(&newSignalAction, 0, sizeof(newSignalAction));
+    // set SignalHandler as the handler in the signal action structure
+    newSignalAction.sa_handler = &SignalHandler;
+    // set SignalHandler as the handlers for SIGABRT, SIGILL and SIGBUS
+    sigaction(SIGABRT, &newSignalAction, NULL);
+    sigaction(SIGILL, &newSignalAction, NULL);
+    sigaction(SIGBUS, &newSignalAction, NULL);
+	sigaction(SIGTRAP, &newSignalAction, NULL);
+    
+	//	[TestFlight setOptions:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"reinstallCrashHandlers", nil]];
+	[TestFlight takeOff:teamToken];
+	
+	
+	//	[TestFlight passCheckpoint:@"CHECKPOINT_NAME"];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
