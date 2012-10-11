@@ -129,8 +129,15 @@
     [oscConnection sendPacket:bundle toHost:remoteAddress port:12002];
 }
 
-- (void)viewDidUnload {
+- (void) viewDidDisappear:(BOOL)animated {
     progressIndicator = nil;
+
+    [oscConnection disconnect];
+    oscConnection = nil;
+
+    [receiveSocket close];
+    receiveSocket = nil;
+
     [super viewDidUnload];
 }
 
