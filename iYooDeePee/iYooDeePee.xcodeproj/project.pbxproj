@@ -39,6 +39,8 @@
 		66F8E7EF162458B20016FFAE /* OSCDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F8E7E8162458B20016FFAE /* OSCDispatcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66F8E7F0162458B20016FFAE /* OSCPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F8E7EA162458B20016FFAE /* OSCPacket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66F8E7F1162458B20016FFAE /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F8E7EC162458B20016FFAE /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7CA38222162606F0004CE2EA /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CA38220162606F0004CE2EA /* libTestFlight.a */; };
+		7CA3823A162607F4004CE2EA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CA38239162607F4004CE2EA /* libz.dylib */; };
 		7CDBD03D161F29C600678482 /* WSOSCBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDBD034161F25F400678482 /* WSOSCBundle.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7CDBD03E161F29C600678482 /* WSOSCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDBD036161F25F400678482 /* WSOSCMessage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7CDBD03F161F29C600678482 /* WSOSCPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDBD038161F25F400678482 /* WSOSCPacket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -102,6 +104,9 @@
 		66F8E7EA162458B20016FFAE /* OSCPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCPacket.m; sourceTree = "<group>"; };
 		66F8E7EB162458B20016FFAE /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		66F8E7EC162458B20016FFAE /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		7CA38220162606F0004CE2EA /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		7CA38221162606F0004CE2EA /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		7CA38239162607F4004CE2EA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		7CDBD033161F25F400678482 /* WSOSCBundle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WSOSCBundle.h; sourceTree = "<group>"; };
 		7CDBD034161F25F400678482 /* WSOSCBundle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WSOSCBundle.m; sourceTree = "<group>"; };
 		7CDBD035161F25F400678482 /* WSOSCMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WSOSCMessage.h; sourceTree = "<group>"; };
@@ -115,11 +120,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CA3823A162607F4004CE2EA /* libz.dylib in Frameworks */,
 				66657953161F0E8F00C7E0DF /* Security.framework in Frameworks */,
 				66657951161F0E8700C7E0DF /* CFNetwork.framework in Frameworks */,
 				666574A6161EFD3B00C7E0DF /* UIKit.framework in Frameworks */,
 				666574A8161EFD3B00C7E0DF /* Foundation.framework in Frameworks */,
 				666574AA161EFD3B00C7E0DF /* CoreGraphics.framework in Frameworks */,
+				7CA38222162606F0004CE2EA /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +175,7 @@
 		66657496161EFD3B00C7E0DF = {
 			isa = PBXGroup;
 			children = (
+				7CA3821F162606F0004CE2EA /* Test Flight */,
 				666574CB161EFE9B00C7E0DF /* Dependencies */,
 				666574AB161EFD3B00C7E0DF /* iYooDeePee */,
 				666574A4161EFD3B00C7E0DF /* Frameworks */,
@@ -186,6 +194,7 @@
 		666574A4161EFD3B00C7E0DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7CA38239162607F4004CE2EA /* libz.dylib */,
 				66657952161F0E8F00C7E0DF /* Security.framework */,
 				66657950161F0E8700C7E0DF /* CFNetwork.framework */,
 				666574A5161EFD3B00C7E0DF /* UIKit.framework */,
@@ -324,6 +333,15 @@
 				66F8E7EC162458B20016FFAE /* RegexKitLite.m */,
 			);
 			name = CocoaOSC;
+			sourceTree = "<group>";
+		};
+		7CA3821F162606F0004CE2EA /* Test Flight */ = {
+			isa = PBXGroup;
+			children = (
+				7CA38220162606F0004CE2EA /* libTestFlight.a */,
+				7CA38221162606F0004CE2EA /* TestFlight.h */,
+			);
+			path = "Test Flight";
 			sourceTree = "<group>";
 		};
 		7CDBD031161F25EF00678482 /* WSOSC */ = {
@@ -513,6 +531,10 @@
 				GCC_PREFIX_HEADER = "iYooDeePee/iYooDeePee-Prefix.pch";
 				INFOPLIST_FILE = "iYooDeePee/iYooDeePee-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Test Flight\"",
+				);
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = Fanfare;
 				WRAPPER_EXTENSION = app;
@@ -527,6 +549,10 @@
 				GCC_PREFIX_HEADER = "iYooDeePee/iYooDeePee-Prefix.pch";
 				INFOPLIST_FILE = "iYooDeePee/iYooDeePee-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Test Flight\"",
+				);
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = Fanfare;
 				WRAPPER_EXTENSION = app;
@@ -570,10 +596,14 @@
 				GCC_PREFIX_HEADER = "iYooDeePee/iYooDeePee-Prefix.pch";
 				INFOPLIST_FILE = "iYooDeePee/iYooDeePee-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Test Flight\"",
+				);
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = Fanfare;
-				PROVISIONING_PROFILE = "73B8DABF-9DE7-4D06-9DB8-CC31BACE0B08";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "73B8DABF-9DE7-4D06-9DB8-CC31BACE0B08";
+				PROVISIONING_PROFILE = "B2CD2ED5-2FBC-4102-91B3-EDD8E1BD0F12";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B2CD2ED5-2FBC-4102-91B3-EDD8E1BD0F12";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad Hoc Distribution";
