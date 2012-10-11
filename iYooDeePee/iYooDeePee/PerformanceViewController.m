@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "PerformanceViewController.h"
 #import "DashboardViewController.h"
+#import "TKProgressView.h"
 
 @interface PerformanceViewController () <GCDAsyncUdpSocketDelegate, OSCConnectionDelegate> {
     GCDAsyncUdpSocket *receiveSocket;
@@ -45,6 +46,14 @@
     [oscConnection bindToAddress:nil port:0 error:nil];
     [oscConnection receivePacket];
     
+    CGRect frame = progressIndicator.frame;
+    frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, 20.0);
+    progressIndicator.trackTintColor = [UIColor darkGrayColor];
+    progressIndicator.progressTintColor = [UIColor whiteColor];
+    [progressIndicator setTintColor:[UIColor whiteColor]];
+    
+    progressIndicator.frame = frame;
+    
 //    while ([[AppDelegate delegate] remoteIP] == nil) {
 //        [self sendDeviceInfo];
 //    }
@@ -53,7 +62,7 @@
 
 #pragma mark - Actions
 
-- (IBAction) reconnectAction:(UIButton*) button {
+- (IBAction) reconnectAction:(UIButton*) button {    
     [AppDelegate delegate].viewController = [[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil];
     [AppDelegate delegate].window.rootViewController = [AppDelegate delegate].viewController;
 }
@@ -129,15 +138,15 @@
     [oscConnection sendPacket:bundle toHost:remoteAddress port:12002];
 }
 
-- (void) viewDidDisappear:(BOOL)animated {
+- (void) viewDidDisappear:(BOOL)animated {    
     progressIndicator = nil;
-
+    
     [oscConnection disconnect];
     oscConnection = nil;
-
+    
     [receiveSocket close];
     receiveSocket = nil;
-
+    
     [super viewDidUnload];
 }
 

@@ -156,7 +156,7 @@
 						<string key="NSFrame">{{72, 287}, {121, 33}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="318864360"/>
+						<reference key="NSNextKeyView" ref="84283790"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -305,7 +305,7 @@
 					<object class="IBUIProgressView" id="610512441">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">263</int>
-						<string key="NSFrame">{{20, 222}, {440, 9}}</string>
+						<string key="NSFrame">{{20, 209}, {440, 9}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="61212961"/>
@@ -318,7 +318,7 @@
 							<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
 						</object>
 					</object>
-					<object class="IBUIButton" id="318864360">
+					<object class="IBUIButton" id="84283790">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{359, 269}, {101, 44}}</string>
@@ -437,14 +437,14 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">reconnectButton</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="318864360"/>
+						<reference key="destination" ref="84283790"/>
 					</object>
 					<int key="connectionID">96</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">reconnectAction:</string>
-						<reference key="source" ref="318864360"/>
+						<reference key="source" ref="84283790"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -484,8 +484,8 @@
 							<reference ref="746432949"/>
 							<reference ref="34703807"/>
 							<reference ref="756767447"/>
+							<reference ref="84283790"/>
 							<reference ref="610512441"/>
-							<reference ref="318864360"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -556,7 +556,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">95</int>
-						<reference key="object" ref="318864360"/>
+						<reference key="object" ref="84283790"/>
 						<reference key="parent" ref="774585933"/>
 					</object>
 				</array>
@@ -576,6 +576,7 @@
 				<string key="41.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="49.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="50.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="52.CustomClassName">PDColoredProgressView</string>
 				<string key="52.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="95.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -588,6 +589,14 @@
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">PDColoredProgressView</string>
+					<string key="superclassName">UIProgressView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/PDColoredProgressView.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">PerformanceViewController</string>
 					<string key="superclassName">UIViewController</string>

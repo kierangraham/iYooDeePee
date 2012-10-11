@@ -33,7 +33,9 @@
 		6665791B161F0DCA00C7E0DF /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6665785C161F0DC900C7E0DF /* DispatchQueueLogFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66657951161F0E8700C7E0DF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66657950161F0E8700C7E0DF /* CFNetwork.framework */; };
 		66657953161F0E8F00C7E0DF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66657952161F0E8F00C7E0DF /* Security.framework */; };
-		66EC6ACC1625D00900C1DB55 /* TKProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EC6ACB1625D00900C1DB55 /* TKProgressView.m */; };
+		66EB04BD162707650081B3CB /* PDColoredProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EB04BC162707650081B3CB /* PDColoredProgressView.m */; };
+		66EB04C0162707E00081B3CB /* drawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EB04BF162707E00081B3CB /* drawing.m */; };
+		66EC6ACC1625D00900C1DB55 /* TKProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EC6ACB1625D00900C1DB55 /* TKProgressView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66F8E7ED162458B20016FFAE /* NS+OSCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F8E7E3162458B20016FFAE /* NS+OSCAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66F8E7EE162458B20016FFAE /* OSCConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F8E7E5162458B20016FFAE /* OSCConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66F8E7EF162458B20016FFAE /* OSCDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F8E7E8162458B20016FFAE /* OSCDispatcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -90,6 +92,9 @@
 		6665785C161F0DC900C7E0DF /* DispatchQueueLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueLogFormatter.m; sourceTree = "<group>"; };
 		66657950161F0E8700C7E0DF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		66657952161F0E8F00C7E0DF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		66EB04BB162707650081B3CB /* PDColoredProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDColoredProgressView.h; sourceTree = "<group>"; };
+		66EB04BC162707650081B3CB /* PDColoredProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDColoredProgressView.m; sourceTree = "<group>"; };
+		66EB04BF162707E00081B3CB /* drawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = drawing.m; sourceTree = "<group>"; };
 		66EC6ACA1625D00900C1DB55 /* TKProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKProgressView.h; sourceTree = "<group>"; };
 		66EC6ACB1625D00900C1DB55 /* TKProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKProgressView.m; sourceTree = "<group>"; };
 		66F8E7E1162458B20016FFAE /* CocoaOSC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaOSC.h; sourceTree = "<group>"; };
@@ -310,8 +315,11 @@
 		66EC6AC51625CB7000C1DB55 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				66EB04BF162707E00081B3CB /* drawing.m */,
 				66EC6ACA1625D00900C1DB55 /* TKProgressView.h */,
 				66EC6ACB1625D00900C1DB55 /* TKProgressView.m */,
+				66EB04BB162707650081B3CB /* PDColoredProgressView.h */,
+				66EB04BC162707650081B3CB /* PDColoredProgressView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -449,6 +457,8 @@
 				66F8E7F0162458B20016FFAE /* OSCPacket.m in Sources */,
 				66F8E7F1162458B20016FFAE /* RegexKitLite.m in Sources */,
 				66EC6ACC1625D00900C1DB55 /* TKProgressView.m in Sources */,
+				66EB04BD162707650081B3CB /* PDColoredProgressView.m in Sources */,
+				66EB04C0162707E00081B3CB /* drawing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,7 +25,7 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-    CGRect allRect = self.bounds;
+    CGRect allRect = self.frame;
     CGRect circleRect = CGRectMake(allRect.origin.x + 2, allRect.origin.y + 2, allRect.size.width - 4,
                                    allRect.size.height - 4);
 	
