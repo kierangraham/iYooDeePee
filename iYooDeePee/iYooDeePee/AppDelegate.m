@@ -13,7 +13,7 @@
 
 @implementation AppDelegate
 
-@synthesize window, viewController, instrumentID;
+@synthesize instrumentID;
 
 + (AppDelegate *) delegate {
     return [[UIApplication sharedApplication] delegate];
@@ -25,12 +25,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    _remoteIP = @"10.0.0.53";
+    
+    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    self.viewController = [[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil];
-    self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
+    _viewController = [[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil];
+//    self.window.rootViewController = self.viewController;
+    [_window setRootViewController:_viewController];
+//    [self.window addSubview:self.viewController.view];
+    [_window makeKeyAndVisible];
 
     [UIApplication sharedApplication].idleTimerDisabled = YES;
 
@@ -64,7 +68,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
--(NSString *) ipAddress {
+-(NSString *) deviceIP {
 	// On iPhone, WiFi is always "en0"
     NSString *result = nil;
 	

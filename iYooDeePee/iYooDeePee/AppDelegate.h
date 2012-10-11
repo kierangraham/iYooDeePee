@@ -12,19 +12,21 @@
 #import "OSCConnection.h"
 #import "OSCDispatcher.h"
 #import "OSCPacket.h"
+#import "DashboardViewController.h"
 
 @class ViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow       *window;
-@property (strong, nonatomic) ViewController *viewController;
-@property (strong, nonatomic) NSString       *instrumentID;
-@property (strong, nonatomic) NSString       *ipAddress;
+@property (strong, nonatomic) UIWindow                  *window;
+@property (strong, nonatomic) UIViewController          *viewController;
+@property (strong, nonatomic) NSString                  *instrumentID;
+@property (readonly, getter = deviceIP) NSString        *deviceIP;
+@property (strong, nonatomic) NSString                  *remoteIP;
 
 + (UIWindow *) window;
 + (AppDelegate *) delegate;
 
-- (NSString *) ipAddress;
+- (NSString *) deviceIP;
 
 @end

@@ -20,7 +20,7 @@
 
 - (IBAction) connectAction:(UIButton*) button {
     [AppDelegate delegate].instrumentID = instrumentField.text;
-        
+    
     PerformanceViewController *controller = [[PerformanceViewController alloc] initWithNibName:@"PerformanceViewController" bundle:nil];
     [AppDelegate window].rootViewController = controller;
 }
@@ -52,6 +52,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
 }
 
 @end

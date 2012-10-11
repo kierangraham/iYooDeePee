@@ -28,7 +28,7 @@
     section  = 0;
     count    = 0;
     
-    ipAddressLabel.text = [[AppDelegate delegate] ipAddress];
+    ipAddressLabel.text = [[AppDelegate delegate] deviceIP];
     instrumentIDLabel.text = [[AppDelegate delegate] instrumentID];
 	
     receiveSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
@@ -44,6 +44,9 @@
     [oscConnection bindToAddress:nil port:0 error:nil];
     [oscConnection receivePacket];
     
+//    while ([[AppDelegate delegate] remoteIP] == nil) {
+//        [self sendDeviceInfo];
+//    }
     [self sendDeviceInfo];
 }
 
@@ -75,20 +78,23 @@
 	else if ([command isEqualToString:@"/count"]) {
         count = [args[0] intValue];
 		countNumberLabel.text = [NSString stringWithFormat:@"%i", count];
+        
+        [self updateProgress];
 	}
 	else if ([command isEqualToString:@"/total"]) {
         duration = [args[0] intValue];
 		totalCountNumberLabel.text = [NSString stringWithFormat:@"%i", duration];
 	}
-    
-    [self updateProgress];
+
+    NSString *remoteIP = [[NSString alloc] initWithData:address encoding:NSUTF8StringEncoding];
+    [AppDelegate delegate].remoteIP = remoteIP;
 }
 
 #pragma mark - OSC Socket
 
 - (void) sendDeviceInfo {    
-    NSString *remoteAddress = @"10.0.0.100";
-    NSString *deviceAddress = [[AppDelegate delegate] ipAddress];
+    NSString *remoteAddress = [[AppDelegate delegate] remoteIP];
+    NSString *deviceAddress = [[AppDelegate delegate] deviceIP];
     NSString *instrumentID  = [[AppDelegate delegate] instrumentID];
     
     OSCMutableMessage *willConnectPacket = [[OSCMutableMessage alloc] init];
@@ -121,4 +127,9 @@
     progressIndicator = nil;
     [super viewDidUnload];
 }
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
+}
+
 @end

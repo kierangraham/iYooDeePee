@@ -964,6 +964,8 @@ enum GCDAsyncUdpSocketConfig
 - (void)notifyDidReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)context
 {
 	LogTrace();
+
+    NSLog(@"%i", [address length]);
 	
 	SEL selector = @selector(udpSocket:didReceiveData:fromAddress:withFilterContext:);
 	
