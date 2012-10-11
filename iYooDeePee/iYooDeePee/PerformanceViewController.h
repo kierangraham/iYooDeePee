@@ -28,8 +28,10 @@
 	IBOutlet UILabel *countNumberLabel;
 	IBOutlet UILabel *totalCountNumberLabel;
     IBOutlet UIProgressView *progressIndicator;
+    IBOutlet UIButton *reconnectButton;
 }
 
 - (void) sendDeviceInfo;
+- (IBAction) reconnectAction:(UIButton*) button;
 
 @end

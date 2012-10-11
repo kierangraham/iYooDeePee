@@ -21,8 +21,8 @@
 - (IBAction) connectAction:(UIButton*) button {
     [AppDelegate delegate].instrumentID = instrumentField.text;
     
-    PerformanceViewController *controller = [[PerformanceViewController alloc] initWithNibName:@"PerformanceViewController" bundle:nil];
-    [AppDelegate window].rootViewController = controller;
+    [AppDelegate delegate].viewController = [[PerformanceViewController alloc] initWithNibName:@"PerformanceViewController" bundle:nil];
+    [AppDelegate window].rootViewController = [AppDelegate delegate].viewController;
 }
 
 #pragma mark - OSC

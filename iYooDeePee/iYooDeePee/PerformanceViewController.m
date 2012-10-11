@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "PerformanceViewController.h"
+#import "DashboardViewController.h"
 
 @interface PerformanceViewController () <GCDAsyncUdpSocketDelegate, OSCConnectionDelegate> {
     GCDAsyncUdpSocket *receiveSocket;
@@ -50,7 +51,12 @@
     [self sendDeviceInfo];
 }
 
-#pragma mark - Progress Indicator
+#pragma mark - Actions
+
+- (IBAction) reconnectAction:(UIButton*) button {
+    [AppDelegate delegate].viewController = [[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil];
+    [AppDelegate delegate].window.rootViewController = [AppDelegate delegate].viewController;
+}
 
 - (void) updateProgress {
     float percent = [@(count) floatValue] / [@(duration) floatValue];
