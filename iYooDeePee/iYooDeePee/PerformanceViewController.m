@@ -47,7 +47,7 @@
     [oscConnection receivePacket];
     
     CGRect frame = progressIndicator.frame;
-    frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, 20.0);
+    frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, 50.0);
     progressIndicator.trackTintColor = [UIColor darkGrayColor];
     progressIndicator.progressTintColor = [UIColor whiteColor];
     [progressIndicator setTintColor:[UIColor whiteColor]];
