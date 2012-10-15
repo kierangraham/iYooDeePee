@@ -10,6 +10,7 @@
 #import "PerformanceViewController.h"
 #import "DashboardViewController.h"
 #import "TKProgressView.h"
+#import "GradientButton.h"
 
 @interface PerformanceViewController () <GCDAsyncUdpSocketDelegate, OSCConnectionDelegate> {
     GCDAsyncUdpSocket *receiveSocket;
@@ -29,6 +30,8 @@
     duration = 0;
     section  = 0;
     count    = 0;
+	
+	[reconnectButton useGreenConfirmStyle];
     
     ipAddressLabel.text = [[AppDelegate delegate] deviceIP];
     instrumentIDLabel.text = [[AppDelegate delegate] instrumentID];

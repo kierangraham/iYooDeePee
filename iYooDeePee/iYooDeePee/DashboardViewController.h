@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class GradientButton;
 @interface DashboardViewController : UIViewController {
-    IBOutlet UIButton    *connectButton;
+    IBOutlet GradientButton    *connectButton;
     IBOutlet UITextField *instrumentField;
+	IBOutlet UITextField *ipField;
 }
 
 - (IBAction) connectAction:(UIButton *) button;

@@ -287,6 +287,17 @@ static id parseOSCObject(char typetag, const void *bytes, NSUInteger *ioIndex, N
 
 - (void)addArgument:(id)arg
 {
+	if (arg == nil) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+														message:@"Bad OSC argument"
+													   delegate:nil
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+		return;
+	}
+		
     [self willChangeValueForKey:@"arguments"];
     [(NSMutableArray *)arguments addObject:arg];
     [self didChangeValueForKey:@"arguments"];

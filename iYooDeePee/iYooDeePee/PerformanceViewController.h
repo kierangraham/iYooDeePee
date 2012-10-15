@@ -21,6 +21,7 @@
 #include <ifaddrs.h>
 #include <arpa/inet.h>
 
+@class GradientButton;
 @interface PerformanceViewController : UIViewController {
     IBOutlet UILabel *ipAddressLabel;
     IBOutlet UILabel *instrumentIDLabel;
@@ -28,7 +29,7 @@
 	IBOutlet UILabel *countNumberLabel;
 	IBOutlet UILabel *totalCountNumberLabel;
     IBOutlet UIProgressView *progressIndicator;
-    IBOutlet UIButton *reconnectButton;
+    IBOutlet GradientButton *reconnectButton;
 }
 
 - (void) sendDeviceInfo;

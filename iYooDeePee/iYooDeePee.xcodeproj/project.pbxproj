@@ -41,6 +41,7 @@
 		66F8E7EF162458B20016FFAE /* OSCDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F8E7E8162458B20016FFAE /* OSCDispatcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66F8E7F0162458B20016FFAE /* OSCPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F8E7EA162458B20016FFAE /* OSCPacket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		66F8E7F1162458B20016FFAE /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F8E7EC162458B20016FFAE /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7C030897162AE29A0080A35D /* GradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C030895162AE12A0080A35D /* GradientButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7CA38222162606F0004CE2EA /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CA38220162606F0004CE2EA /* libTestFlight.a */; };
 		7CA3823A162607F4004CE2EA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CA38239162607F4004CE2EA /* libz.dylib */; };
 		7CDBD03D161F29C600678482 /* WSOSCBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDBD034161F25F400678482 /* WSOSCBundle.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -109,6 +110,8 @@
 		66F8E7EA162458B20016FFAE /* OSCPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCPacket.m; sourceTree = "<group>"; };
 		66F8E7EB162458B20016FFAE /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		66F8E7EC162458B20016FFAE /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		7C030894162AE12A0080A35D /* GradientButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GradientButton.h; sourceTree = "<group>"; };
+		7C030895162AE12A0080A35D /* GradientButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GradientButton.m; sourceTree = "<group>"; };
 		7CA38220162606F0004CE2EA /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		7CA38221162606F0004CE2EA /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		7CA38239162607F4004CE2EA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -320,6 +323,8 @@
 				66EC6ACB1625D00900C1DB55 /* TKProgressView.m */,
 				66EB04BB162707650081B3CB /* PDColoredProgressView.h */,
 				66EB04BC162707650081B3CB /* PDColoredProgressView.m */,
+				7C030894162AE12A0080A35D /* GradientButton.h */,
+				7C030895162AE12A0080A35D /* GradientButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -433,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C030897162AE29A0080A35D /* GradientButton.m in Sources */,
 				7CDBD03D161F29C600678482 /* WSOSCBundle.m in Sources */,
 				7CDBD03E161F29C600678482 /* WSOSCMessage.m in Sources */,
 				7CDBD03F161F29C600678482 /* WSOSCPacket.m in Sources */,
@@ -612,8 +618,8 @@
 				);
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = Fanfare;
-				PROVISIONING_PROFILE = "B2CD2ED5-2FBC-4102-91B3-EDD8E1BD0F12";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B2CD2ED5-2FBC-4102-91B3-EDD8E1BD0F12";
+				PROVISIONING_PROFILE = "20D63A59-5513-46FA-AC18-418035EE4BFF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "20D63A59-5513-46FA-AC18-418035EE4BFF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad Hoc Distribution";
