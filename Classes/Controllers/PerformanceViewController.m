@@ -34,12 +34,13 @@
 	
 	[reconnectButton useGreenConfirmStyle];
     
-    ipAddressLabel.text = [[AppDelegate delegate] deviceIP];
-    instrumentIDLabel.text = [[AppDelegate delegate] instrumentID];
+    ipAddressLabel.text = [[SessionManager sharedInstance] deviceIP];
+    instrumentIDLabel.text = [[SessionManager sharedInstance] instrumentID];
+	remoteIPAddressLabel.text = [[SessionManager sharedInstance] remoteIP];
 	
     receiveSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     
-    [receiveSocket bindToPort:12000 error:nil];
+    [receiveSocket bindToPort:1200 error:nil];
     [receiveSocket beginReceiving:nil];
     [receiveSocket enableBroadcast:YES error:nil];
     
@@ -54,24 +55,29 @@
     frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, 50.0);
     progressIndicator.trackTintColor = [UIColor darkGrayColor];
     progressIndicator.progressTintColor = [UIColor whiteColor];
-    [progressIndicator setTintColor:[UIColor whiteColor]];
+    [progressIndicator setTintColor:[UIColor redColor]];
     
     progressIndicator.frame = frame;
     
 //    while ([[AppDelegate delegate] remoteIP] == nil) {
 //        [self sendDeviceInfo];
 //    }
-    [self sendDeviceInfo];
+//    [self sendDeviceInfo];
 }
 
 #pragma mark - Actions
 
 - (IBAction) reconnectAction:(UIButton*) button {    
-    [AppDelegate delegate].viewController = [[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil];
-    [AppDelegate delegate].window.rootViewController = [AppDelegate delegate].viewController;
+	[[self navigationController]	 popToRootViewControllerAnimated:YES];
 }
 
 - (void) updateProgress {
+	
+	if (count >= duration-5)
+		[progressIndicator setTintColor:[UIColor redColor]];
+	else
+		[progressIndicator setTintColor:[UIColor whiteColor]];
+	
     float percent = [@(count) floatValue] / [@(duration) floatValue];
     [progressIndicator setProgress:percent];
 }
@@ -106,40 +112,40 @@
 	}
 
     NSString *remoteIP = [[NSString alloc] initWithData:address encoding:NSUTF8StringEncoding];
-    [AppDelegate delegate].remoteIP = remoteIP;
+	[[SessionManager sharedInstance] setRemoteIP:remoteIP];
 }
 
 #pragma mark - OSC Socket
 
 - (void) sendDeviceInfo {    
-    NSString *remoteAddress = [[AppDelegate delegate] remoteIP];
-    NSString *deviceAddress = [[AppDelegate delegate] deviceIP];
-    NSString *instrumentID  = [[AppDelegate delegate] instrumentID];
+//    NSString *remoteAddress = [[SessionManager sharedInstance] remoteIP];
+//    NSString *deviceAddress = [[SessionManager sharedInstance] deviceIP];
+//    NSString *instrumentID  = [[SessionManager sharedInstance] instrumentID];
+//    
+//    OSCMutableMessage *willConnectPacket = [[OSCMutableMessage alloc] init];
+//    willConnectPacket.address = @"/client_will_connect";
+////    [willConnectPacket addString:@"vvvv"];
+//    
+//    OSCMutableMessage *didConnectPacket = [[OSCMutableMessage alloc] init];
+//    didConnectPacket.address = @"/client_did_connect";
+////    [didConnectPacket addString:@"^^^^"];
+//    
+//    OSCMutableBundle  *bundle              = [[OSCMutableBundle alloc] init];
+//    
+//    OSCMutableMessage *deviceAddressPacket = [[OSCMutableMessage alloc] init];
+//    deviceAddressPacket.address = @"/device_ip";
+//    [deviceAddressPacket addString:deviceAddress];
+//    
+//    OSCMutableMessage *instrumentIdPacket  = [[OSCMutableMessage alloc] init];
+//    instrumentIdPacket.address = @"/instrument_id";
+//    [instrumentIdPacket addString:instrumentID];
+//    
+//    [bundle addChildPacket:willConnectPacket];
+//    [bundle addChildPacket:deviceAddressPacket];
+//    [bundle addChildPacket:instrumentIdPacket];
+//    [bundle addChildPacket:didConnectPacket];
     
-    OSCMutableMessage *willConnectPacket = [[OSCMutableMessage alloc] init];
-    willConnectPacket.address = @"/client_will_connect";
-//    [willConnectPacket addString:@"vvvv"];
-    
-    OSCMutableMessage *didConnectPacket = [[OSCMutableMessage alloc] init];
-    didConnectPacket.address = @"/client_did_connect";
-//    [didConnectPacket addString:@"^^^^"];
-    
-    OSCMutableBundle  *bundle              = [[OSCMutableBundle alloc] init];
-    
-    OSCMutableMessage *deviceAddressPacket = [[OSCMutableMessage alloc] init];
-    deviceAddressPacket.address = @"/device_ip";
-    [deviceAddressPacket addString:deviceAddress];
-    
-    OSCMutableMessage *instrumentIdPacket  = [[OSCMutableMessage alloc] init];
-    instrumentIdPacket.address = @"/instrument_id";
-    [instrumentIdPacket addString:instrumentID];
-    
-    [bundle addChildPacket:willConnectPacket];
-    [bundle addChildPacket:deviceAddressPacket];
-    [bundle addChildPacket:instrumentIdPacket];
-    [bundle addChildPacket:didConnectPacket];
-    
-    [oscConnection sendPacket:bundle toHost:remoteAddress port:12002];
+//    [oscConnection sendPacket:bundle toHost:remoteAddress port:12002];
 }
 
 - (void) viewDidDisappear:(BOOL)animated {    

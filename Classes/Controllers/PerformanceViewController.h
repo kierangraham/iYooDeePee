@@ -18,9 +18,6 @@
 #import "OSCDispatcher.h"
 #import "OSCPacket.h"
 
-#include <ifaddrs.h>
-#include <arpa/inet.h>
-
 @class GradientButton;
 @class PDColoredProgressView;
 
@@ -32,6 +29,7 @@
 	IBOutlet UILabel *totalCountNumberLabel;
     IBOutlet PDColoredProgressView *progressIndicator;
     IBOutlet GradientButton *reconnectButton;
+	IBOutlet UILabel *remoteIPAddressLabel;
 }
 
 - (void) sendDeviceInfo;

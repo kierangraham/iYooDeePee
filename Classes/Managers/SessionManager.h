@@ -10,4 +10,14 @@
 
 @interface SessionManager : NSObject
 
+@property (copy, nonatomic)		NSString        *instrumentID;
+@property (copy, nonatomic)		NSString        *remoteIP;
+
+@property (readonly, assign)	NSString        *deviceIP;
+
++ (SessionManager *)sharedInstance;
+- (void)setDefaults;
+- (void)saveDefaults;
+
+
 @end

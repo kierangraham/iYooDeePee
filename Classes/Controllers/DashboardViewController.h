@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @class GradientButton;
-@interface DashboardViewController : UIViewController {
+@interface DashboardViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate> {
     IBOutlet GradientButton    *connectButton;
     IBOutlet UITextField *instrumentField;
 	IBOutlet UITextField *ipField;
+	
+	IBOutlet UIPickerView *picker;
+	IBOutlet UIView *pickerHolderView;
+	IBOutlet UIActivityIndicatorView *spinner;
 }
 
 - (IBAction) connectAction:(UIButton *) button;

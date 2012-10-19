@@ -15,8 +15,6 @@
 
 @implementation AppDelegate
 
-@synthesize instrumentID;
-
 + (AppDelegate *) delegate {
     return [[UIApplication sharedApplication] delegate];
 }
@@ -27,16 +25,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    _remoteIP = @"10.0.0.53";
+	[[SessionManager sharedInstance] setDefaults];
     
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
 	
+	_navigationController = [[UINavigationController alloc] initWithRootViewController:[[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil]];
+	[_navigationController setNavigationBarHidden:YES];
     
-    _viewController = [[DashboardViewController alloc] initWithNibName:@"DashboardViewController" bundle:nil];
-//    self.window.rootViewController = self.viewController;
-    [_window setRootViewController:_viewController];
-//    [self.window addSubview:self.viewController.view];
+    [_window setRootViewController:_navigationController];
     [_window makeKeyAndVisible];
 
     [UIApplication sharedApplication].idleTimerDisabled = YES;
@@ -100,12 +97,14 @@ static void SignalHandler(int sig) {
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+	[[SessionManager sharedInstance] saveDefaults];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+	[[SessionManager sharedInstance] saveDefaults];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -121,43 +120,7 @@ static void SignalHandler(int sig) {
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
--(NSString *) deviceIP {
-	// On iPhone, WiFi is always "en0"
-    NSString *result = nil;
-	
-	struct ifaddrs *addrs;
-	const struct ifaddrs *cursor;
-	
-	if ((getifaddrs(&addrs) == 0))
-	{
-		cursor = addrs;
-		while (cursor != NULL)
-		{
-			if (strcmp(cursor->ifa_name, "en0") == 0)
-			{
-				if (cursor->ifa_addr->sa_family == AF_INET)
-				{
-					struct sockaddr_in *addr = (struct sockaddr_in *)cursor->ifa_addr;
-					
-                    result = [[NSString alloc] initWithFormat:@"%s",inet_ntoa(addr->sin_addr)];
-                    
-					cursor = NULL;
-				}
-				else
-				{
-					cursor = cursor->ifa_next;
-				}
-			}
-			else
-			{
-				cursor = cursor->ifa_next;
-			}
-		}
-		freeifaddrs(addrs);
-	}
-	return result;
+	[[SessionManager sharedInstance] saveDefaults];
 }
 
 @end

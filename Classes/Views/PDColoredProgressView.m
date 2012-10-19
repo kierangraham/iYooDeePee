@@ -105,10 +105,10 @@
 	}
 }
 
-- (void) setTintColor: (UIColor *) aColor
-{
-	_tintColor = aColor;
-}
+//- (void) setTintColor: (UIColor *) aColor
+//{
+//	_tintColor = aColor;
+//}
 
 - (void) moveProgress
 {

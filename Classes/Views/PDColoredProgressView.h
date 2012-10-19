@@ -38,10 +38,12 @@
     CGFloat _targetProgress;
 }
 
+@property (nonatomic, strong) UIColor *tintColor;
+
 /**
  Set the desired tintColor for this control
  **/
-- (void) setTintColor: (UIColor *) aColor;
+//- (void) setTintColor: (UIColor *) aColor;
 
 /**
  Set progress value with option animation

@@ -46,6 +46,7 @@
 		7C7AE4B7162DAD5200587A40 /* PerformanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C7AE490162DAD5200587A40 /* PerformanceViewController.xib */; };
 		7C7AE4BA162DAD5200587A40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7AE497162DAD5200587A40 /* main.m */; };
 		7C7AE4C0162DAFED00587A40 /* drawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7AE4BF162DAFED00587A40 /* drawing.m */; };
+		7C7AE4C5162DB23600587A40 /* SessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7AE4C4162DB23600587A40 /* SessionManager.m */; };
 		7CA3823A162607F4004CE2EA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CA38239162607F4004CE2EA /* libz.dylib */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +121,9 @@
 		7C7AE496162DAD5200587A40 /* iYooDeePee-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iYooDeePee-Prefix.pch"; sourceTree = "<group>"; };
 		7C7AE497162DAD5200587A40 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7C7AE4BF162DAFED00587A40 /* drawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = drawing.m; sourceTree = "<group>"; };
+		7C7AE4C2162DB22200587A40 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
+		7C7AE4C3162DB23600587A40 /* SessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionManager.h; sourceTree = "<group>"; };
+		7C7AE4C4162DB23600587A40 /* SessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionManager.m; sourceTree = "<group>"; };
 		7CA38239162607F4004CE2EA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -329,6 +333,8 @@
 		7C7AE47F162DAD5200587A40 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				7C7AE4C3162DB23600587A40 /* SessionManager.h */,
+				7C7AE4C4162DB23600587A40 /* SessionManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -352,6 +358,7 @@
 			children = (
 				7C7AE488162DAD5200587A40 /* Images */,
 				7C7AE48C162DAD5200587A40 /* NIBs */,
+				7C7AE4C1162DB1FA00587A40 /* Utilities */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -384,6 +391,14 @@
 				7C7AE497162DAD5200587A40 /* main.m */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7C7AE4C1162DB1FA00587A40 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7C7AE4C2162DB22200587A40 /* SynthesizeSingleton.h */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -481,6 +496,7 @@
 				7C7AE4B1162DAD5200587A40 /* TKProgressView.m in Sources */,
 				7C7AE4BA162DAD5200587A40 /* main.m in Sources */,
 				7C7AE4C0162DAFED00587A40 /* drawing.m in Sources */,
+				7C7AE4C5162DB23600587A40 /* SessionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
